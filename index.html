@@ -1,53 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="style.css">
+    <title>JMM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body >
 
-<div id="header">
-    <div id="menubutton"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></div>
-    <div id="center"></div>
-    <div id="headername">Jacob Matthew Murray</div>
+<body>
+
+<div class="content">
+    <div class="header">
+        <a id="navopen" href="javascript:void(0)" onclick="openNav('navslide')">&#9776;</a>
+        <div id="name">Jacob Matthew Murray</div>
+    </div>
+    <div id="ca"></div>
+    <div id="controls">
+        <button onclick="randomPopulation()">&#9778;</button>
+        <button id="playButton" onclick="updateLife()">&#x25ba;</button>
+        <button onclick="clearAll()">&#10006;</button>
+    </div>
 </div>
 
-<div id="container">
-    <div id="div1"></div>
-</div>
-
-
-
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="flexcontainer">
+<div id="navslide">
+    <div id="navslidecontent">
+        <a href="javascript:void(0)" id="navclose" onclick="closeNav('navslide', 'contentslide')">&times;</a>
         <a href="#" onclick="load_content(this.id)" id="about">about</a>
         <a href="#">blog</a>
         <a href='#'>resources</a>
     </div>
 </div>
 
-<div id="myMainSlideOut" class="mainSlideOut">
-    <a href="javascript:void(0)" class="closebtn" onclick="close_content()">&#8676;</a>
-    <div id="contentdiv"></div>
+<div id="contentslide">
+    <div class="content">
+        <div class="header"><a href="javascript:void(0)" id="csclose" onclick="close_content()">&#8676;</a></div>
+        <div id="csc"></div>
+    </div>
 </div>
-
-<div id="controls">
-    <button onclick="randomPopulation()">&#9778;</button>
-    <button id="playButton" onclick="updateLife()">&#9654;</button>
-    <button onclick="clearAll()">&#10006;</button>    
-</div>
-
-
 
 <script>
-var rows = Math.max(Math.floor((window.innerHeight - 300)/16),30);
-var cols = Math.max(Math.floor((document.getElementById("div1").clientWidth - 86) / 16),30);
+var rows = Math.max(Math.floor((window.innerHeight - 300)/15),30);
+var cols = Math.max(Math.floor((document.getElementById("ca").clientWidth - 16) / 15),30);
 
-
-var min = 1;
-var max = 10;
 var alive = false; 
 var palive = 0.3;
 var genspeed = 200;
@@ -115,12 +108,11 @@ function randomPopulation() {
 
 
 
-function drawTable() {
+function drawTable(destination, table_id) {
 
-    var div1 = document.getElementById('div1');        
-
+    var dest_div = document.getElementById(destination);
     var tbl = document.createElement("table");
-    tbl.setAttribute("id","catbl");
+    tbl.setAttribute("id", table_id);
 
 
     for (var r = 0; r < rows; r++) {
@@ -134,7 +126,7 @@ function drawTable() {
         }          
      tbl.appendChild(row);
     }
- div1.appendChild(tbl);
+ dest_div.appendChild(tbl);
 }
 
     function clearAll (){
@@ -208,38 +200,38 @@ function drawTable() {
         }
     }
 
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
+    function openNav(nav) {
+        document.getElementById(nav).style.width = "15vw";
     }
 
 
-    function closeNav() {
+    function closeNav(nav, content) {
         if (mainSlideOutOpen == true){
-            document.getElementById("myMainSlideOut").style.width = "0";
+            document.getElementById(content).style.width = "0";
             setTimeout(function (){
-                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById(nav).style.width = "0";
             }, 500);
         } else {
-            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById(nav).style.width = "0";
         }; 
     }
 
 
     function close_content() {
         mainSlideOutOpen = false; 
-        document.getElementById("myMainSlideOut").style.width = "0";
+        document.getElementById("contentslide").style.width = "0";
     }
 
     function load_content(myid) {
-        document.getElementById("contentdiv").innerHTML = 
+        document.getElementById("csc").innerHTML =
         '<object type="text/html" data="'+String(myid)+'.html" ></object>';
         mainSlideOutOpen = true; 
-        document.getElementById("myMainSlideOut").style.width = String(window.innerWidth -250) + "px";
+        document.getElementById("contentslide").style.width = "85vw";
     }
 
 
     function pageLoader() {
-        drawTable();
+        drawTable("ca", "catbl");
         randomPopulation();
     }
 
