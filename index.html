@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body >
+
+<div id="header">
+    <div id="menubutton"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></div>
+    <div id="center"></div>
+    <div id="headername">Jacob Matthew Murray</div>
+</div>
+
+<div id="container">
+    <div id="div1"></div>
+</div>
+
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="flexcontainer">
+        <a href="#" onclick="load_content(this.id)" id="about">about</a>
+        <a href="#">blog</a>
+        <a href='#'>resources</a>
+    </div>
+</div>
+
+<div id="myMainSlideOut" class="mainSlideOut">
+    <a href="javascript:void(0)" class="closebtn" onclick="close_content()">&#8676;</a>
+    <div id="contentdiv"></div>
+</div>
+
+<div id="controls">
+    <button onclick="randomPopulation()">&#9778;</button>
+    <button id="playButton" onclick="updateLife()">&#9654;</button>
+    <button onclick="clearAll()">&#10006;</button>    
+</div>
+
+
+
+<script>
+var rows = Math.max(Math.floor((window.innerHeight - 300)/16),30);
+var cols = Math.max(Math.floor((document.getElementById("div1").clientWidth - 86) / 16),30);
+
+
+var min = 1;
+var max = 10;
+var alive = false; 
+var palive = 0.3;
+var genspeed = 200;
+var mainSlideOutOpen = false; 
+
+var neighborhood = {
+    standard : [[-1,-1],[-1,0],[-1,+1],
+                [+1,-1],[+1,0],[+1,+1],
+                [0,-1],[0,+1]] 
+};
+
+
+var field = makeMultiDimArray(rows, cols, 0);
+var value = makeMultiDimArray(rows, cols, 0);
+var border = makeMultiDimArray(rows, cols, [0,0]);
+
+function mod(n, m) {
+        return ((n % m) + m) % m;
+}
+
+
+function makeMultiDimArray(inRows, inCols, inIntlVal) {
+    a = new Array(inRows);
+    for (var r=0; r < inRows; r++){
+        a[r] = new Array(inCols);
+        for (var c=0; c < inCols; c++){
+            a[r][c] = inIntlVal; 
+        }
+    }
+    return(a);
+}
+
+function assessValue() {
+    var nhd = neighborhood.standard; 
+    for (var r=0; r<rows; r++){
+        for (var c=0; c<cols; c++){
+            value[r][c] = 0; 
+            for (var n=0; n<nhd.length; n++){
+                var rowidx = mod(r + nhd[n][0], rows);
+                var colidx = mod(c + nhd[n][1], cols);
+                value[r][c] += field[rowidx][colidx]; 
+            } 
+        }
+    }
+}
+
+
+
+function randomPopulation() {
+
+    var tbl = document.getElementById("catbl");
+
+    for (var r=0; r<rows; r++){
+        for (var c=0; c<cols; c++){
+            if (Math.random() < palive){
+                field[r][c] = 1;
+                tbl.rows[r].cells[c].style = "background-color: black";
+            } else {
+                field[r][c] = 0;
+                tbl.rows[r].cells[c].style = "background-color: white";                    
+            }
+        }
+    }
+}
+
+
+
+function drawTable() {
+
+    var div1 = document.getElementById('div1');        
+
+    var tbl = document.createElement("table");
+    tbl.setAttribute("id","catbl");
+
+
+    for (var r = 0; r < rows; r++) {
+        var row = document.createElement("tr");
+
+         for (var c = 0; c < cols; c++) {
+            var cell = document.createElement("td");              
+            cell.addEventListener("click", function(){ changeBackground(this); });
+
+            row.appendChild(cell);
+        }          
+     tbl.appendChild(row);
+    }
+ div1.appendChild(tbl);
+}
+
+    function clearAll (){
+        var tbl = document.getElementById("catbl");
+
+        for (var r=0; r < rows; r++){
+            for (var c=0; c < cols; c++){
+                field[r][c] = 0;
+                value[r][c] = 0;
+                tbl.rows[r].cells[c].style = "background-color: white";
+            }
+        }
+    }
+
+    function changeBackground (id){
+        var row = id.parentNode.rowIndex;
+        var col = id.cellIndex;
+        if (field[row][col] == 0) {
+            field[row][col] = 1;
+            id.style = "background-color: black"; 
+        } else {
+            field[row][col] = 0;
+            id.style = "background-color: white";
+        }
+    }
+
+
+
+    function assessField (){
+        //1. death if fewer than two neighbors
+        //2. two or three neighbors lives
+        //3. death if more then three neighbors 
+        //4. dead cell with exactly three neighbors spawns 
+
+        var tbl = document.getElementById("catbl");
+
+        for (r=0; r<rows; r++){
+            for (c=0; c<cols; c++){
+                if (field[r][c] == 1){
+                    if (value[r][c] < 2 || value[r][c] > 3){
+                        field[r][c] = 0;
+                        tbl.rows[r].cells[c].style = "background-color: white";
+                    }
+                } else {
+                    if (value[r][c] == 3){
+                        field[r][c] = 1;
+                        tbl.rows[r].cells[c].style = "background-color: black";
+                    }
+                } 
+            }
+        }
+    }
+
+    function updateLife(){
+        if (alive == false){
+            alive = true;
+            document.getElementById("playButton").innerHTML = "&#10073;&#10073;";
+        } else {
+            alive = false;
+            document.getElementById("playButton").innerHTML = "&#9654;";
+        }
+
+        var interval = setInterval(live, genspeed);
+        function live(){
+            if (alive == false){
+                clearInterval(interval);
+            } else {
+                assessValue();
+                assessField();
+            }
+        }
+    }
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+
+    function closeNav() {
+        if (mainSlideOutOpen == true){
+            document.getElementById("myMainSlideOut").style.width = "0";
+            setTimeout(function (){
+                document.getElementById("mySidenav").style.width = "0";
+            }, 500);
+        } else {
+            document.getElementById("mySidenav").style.width = "0";
+        }; 
+    }
+
+
+    function close_content() {
+        mainSlideOutOpen = false; 
+        document.getElementById("myMainSlideOut").style.width = "0";
+    }
+
+    function load_content(myid) {
+        document.getElementById("contentdiv").innerHTML = 
+        '<object type="text/html" data="'+String(myid)+'.html" ></object>';
+        mainSlideOutOpen = true; 
+        document.getElementById("myMainSlideOut").style.width = String(window.innerWidth -250) + "px";
+    }
+
+
+    function pageLoader() {
+        drawTable();
+        randomPopulation();
+    }
+
+window.onload=pageLoader;
+</script>
+</body>
+</html>
