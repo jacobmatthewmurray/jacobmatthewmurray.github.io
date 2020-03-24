@@ -196,7 +196,7 @@ function drawTable(destination, table_id) {
             document.getElementById("playButton").innerHTML = "&#10073;&#10073;";
         } else {
             alive = false;
-            document.getElementById("playButton").innerHTML = "&#9654;";
+            document.getElementById("playButton").innerHTML = "&#x25ba;";
         }
 
         var interval = setInterval(live, genspeed);
@@ -256,7 +256,16 @@ var delay = (function(){
   };
 })();
 
-window.onresize = function () {delay(location.reload(), 100);};
+
+if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    window.onresize = function () {delay(location.reload(), 100);}
+} else {
+    console.log('mobile')
+    window.onorientationchange = function () {delay(location.reload(), 100);}
+};
+
+
+
 window.onload=pageLoader;
 </script>
 </body>
