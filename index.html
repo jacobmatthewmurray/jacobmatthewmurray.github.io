@@ -38,8 +38,13 @@
 </div>
 
 <script>
-var rows = Math.max(Math.floor((window.innerHeight - 300)/15),30);
-var cols = Math.max(Math.floor((document.getElementById("ca").clientWidth - 16) / 15),30);
+// var rows = Math.max(Math.floor((window.innerHeight - 300)/15),30);
+// var cols = Math.max(Math.floor((document.getElementById("ca").clientWidth - 16) / 15),30);
+
+var ratio = window.innerHeight / window.innerWidth;
+var height_adjust = (ratio <= 1) ? 0.66 : 0.66 - 2*ratio**2/100;
+var cols = 100;
+var rows = Math.floor(ratio * cols * height_adjust);
 
 var alive = false; 
 var palive = 0.3;
