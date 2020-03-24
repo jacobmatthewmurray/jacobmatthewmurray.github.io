@@ -60,7 +60,7 @@ body {
 }
 
 
-#controls button {
+#controls a {
     background-color: white;
     border: 1px solid black;
     width: 40px;
@@ -72,7 +72,12 @@ body {
     font-size: 16pt;
 }
 
-#controls button:hover {
+#controls a>img {
+    width: 40px;
+    height: 40px;
+}
+
+#controls a:hover {
     transition-duration: 0.3s;
     background-color: #f1f1f1;
 }

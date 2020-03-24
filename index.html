@@ -4,6 +4,9 @@
     <title>JMM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 </head>
 
 <body>
@@ -15,9 +18,9 @@
     </div>
     <div id="ca"></div>
     <div id="controls">
-        <button onclick="randomPopulation()">&#9778;</button>
-        <button id="playButton" onclick="updateLife()">&#x25ba;</button>
-        <button onclick="clearAll()">&#10006;</button>
+        <a onclick="randomPopulation()"><img src="trigram_for_earth.png" alt="random population"></a>
+        <a onclick="updateLife()"><img id="playButton" src="black_rightpointing_triangle.png" alt="play"></a>
+        <a href="javascript:void(0)" onclick="clearAll()"><img src="heavy_multiplication_x.png" alt="clear"></a>
     </div>
 </div>
 
@@ -193,10 +196,10 @@ function drawTable(destination, table_id) {
     function updateLife(){
         if (alive == false){
             alive = true;
-            document.getElementById("playButton").innerHTML = "&#10073;&#10073;";
+            document.getElementById("playButton").src = "black_square.png";
         } else {
             alive = false;
-            document.getElementById("playButton").innerHTML = "&#x25ba;";
+            document.getElementById("playButton").src = "black_rightpointing_triangle.png";
         }
 
         var interval = setInterval(live, genspeed);
