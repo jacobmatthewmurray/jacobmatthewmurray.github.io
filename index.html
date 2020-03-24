@@ -24,27 +24,32 @@
 <div id="navslide">
     <div id="navslidecontent">
         <a href="javascript:void(0)" id="navclose" onclick="closeNav('navslide', 'contentslide')">&times;</a>
-        <a href="#" onclick="load_content(this.id)" id="about">about</a>
-        <a href="#">blog</a>
-        <a href='#'>resources</a>
+        <div class="rotate">
+        <a href="#" onclick="load_content(this.id)" id="about" style="margin-top: 15px;">about</a>
+        <a href="#" style="margin-top: 35px;">blog</a>
+        <a href='#' style="margin-top: 58px;">resources</a>
+        </div>
     </div>
 </div>
 
 <div id="contentslide">
     <div class="content">
         <div class="header"><a href="javascript:void(0)" id="csclose" onclick="close_content()">&#8676;</a></div>
-        <div id="csc"></div>
+        <div id="csc">
+        </div>
     </div>
 </div>
 
 <script>
-// var rows = Math.max(Math.floor((window.innerHeight - 300)/15),30);
-// var cols = Math.max(Math.floor((document.getElementById("ca").clientWidth - 16) / 15),30);
 
-var ratio = window.innerHeight / window.innerWidth;
-var height_adjust = (ratio <= 1) ? 0.66 : 0.66 - 2*ratio**2/100;
-var cols = 100;
-var rows = Math.floor(ratio * cols * height_adjust);
+var c = 15;
+var h = window.innerHeight;
+var w = window.innerWidth;
+var m = 10;
+var a = 0.66;
+
+var cols = Math.floor((w - 2 * m)/c);
+var rows = Math.floor(a * h /c);
 
 var alive = false; 
 var palive = 0.3;
@@ -206,9 +211,8 @@ function drawTable(destination, table_id) {
     }
 
     function openNav(nav) {
-        document.getElementById(nav).style.width = "15vw";
+        document.getElementById(nav).style.width = "70px";
     }
-
 
     function closeNav(nav, content) {
         if (mainSlideOutOpen == true){
@@ -221,17 +225,20 @@ function drawTable(destination, table_id) {
         }; 
     }
 
-
     function close_content() {
         mainSlideOutOpen = false; 
         document.getElementById("contentslide").style.width = "0";
     }
 
     function load_content(myid) {
-        document.getElementById("csc").innerHTML =
-        '<object type="text/html" data="'+String(myid)+'.html" ></object>';
-        mainSlideOutOpen = true; 
-        document.getElementById("contentslide").style.width = "85vw";
+        document.getElementById("contentslide").style.width = String(w - 70) + 'px';
+        mainSlideOutOpen = true;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', String(myid) + '.html', true);
+        xhr.onreadystatechange = function() {
+            document.getElementById("csc").innerHTML = this.responseText;
+        };
+        xhr.send()
     }
 
 
@@ -240,6 +247,16 @@ function drawTable(destination, table_id) {
         randomPopulation();
     }
 
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+window.onresize = function () {delay(location.reload(), 100);};
 window.onload=pageLoader;
 </script>
 </body>
