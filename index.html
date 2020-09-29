@@ -13,11 +13,12 @@
 
 <div class="content">
     <div class="header">
-        <a id="navopen" href="javascript:void(0)" onclick="openNav('navslide')">&#9776;</a>
+        <a id="navopen" onclick="openNav('navslide')">&#9776;</a>
         <div id="name">Jacob Matthew Murray</div>
     </div>
     <div id="ca"></div>
     <div id="controls">
+        <a onclick="leafPopulation()"><img src="maple_leaf.png" alt="leaf population"></a>
         <a onclick="randomPopulation()"><img src="trigram_for_earth.png" alt="random population"></a>
         <a onclick="updateLife()"><img id="playButton" src="black_rightpointing_triangle.png" alt="play"></a>
         <a onclick="clearAll()"><img src="heavy_multiplication_x.png" alt="clear"></a>
@@ -37,7 +38,7 @@
 
 <div id="contentslide">
     <div class="content">
-        <div class="header"><a href="javascript:void(0)" id="csclose" onclick="close_content()">&#8676;</a></div>
+        <div class="header"><a href="" id="csclose" onclick="close_content()">&#8676;</a></div>
         <div id="csc">
         </div>
     </div>
@@ -64,6 +65,35 @@ var neighborhood = {
                 [+1,-1],[+1,0],[+1,+1],
                 [0,-1],[0,+1]] 
 };
+
+
+var aG = [[1,1,1,1], [1,0,0,0], [1,0,1,1], [1,0,0,1], [1,1,1,1]]
+var aO = [[1,1,1,1], [1,0,0,1], [1,0,0,1], [1,0,0,1], [1,1,1,1]]
+var aD = [[1,1,1,0], [1,0,0,1], [1,0,0,1], [1,0,0,1], [1,1,1,0]]
+var aN = [[1,0,0,1], [1,1,0,1], [1,1,1,1], [1,0,1,1], [1,0,0,1]]
+var aI = [[1], [1], [1], [1], [1]]
+var aH = [[1,0,0,1], [1,0,0,1], [1,1,1,1], [1,0,0,1], [1,0,0,1]]
+var aT = [[1,1,1], [0,1,0], [0,1,0], [0,1,0], [0,1,0]]
+
+var leaf = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0],
+            [0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0],
+            [0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,0,0,0,0],
+            [0,0,0,0,0,1,1,0,1,1,1,0,1,1,0,0,0,0,0],
+            [0,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,0],
+            [0,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,0],
+            [0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0],
+            [0,0,0,1,1,1,0,0,0,1,0,0,0,1,1,1,0,0,0],
+            [0,0,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,0,0],
+            [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+            [0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
 
 var field = makeMultiDimArray(rows, cols, 0);
@@ -114,6 +144,29 @@ function randomPopulation() {
             } else {
                 field[r][c] = 0;
                 tbl.rows[r].cells[c].style = "background-color: white";                    
+            }
+        }
+    }
+}
+
+function leafPopulation() {
+
+    var tbl = document.getElementById('catbl')
+
+    if (rows<19 || cols < 19) {
+        randomPopulation();
+    } else {
+        clearAll();
+        row_start = Math.floor((rows-19)/2)
+        col_start = Math.floor((cols-19)/2)
+        for (var r=0; r<19; r++){
+            for (var c=0; c<19; c++) {
+                field[r+row_start][c+col_start] = leaf[r][c]
+                if (leaf[r][c] == 1) {
+                    tbl.rows[r+row_start].cells[c+col_start].style = "background-color: black";
+                } else {
+                    tbl.rows[r+row_start].cells[c+col_start].style = "background-color: white";
+                }
             }
         }
     }
@@ -239,6 +292,7 @@ function drawTable(destination, table_id) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', String(myid) + '.html', true);
         xhr.onreadystatechange = function() {
+            console.log(this.responseText);
             document.getElementById("csc").innerHTML = this.responseText;
         };
         xhr.send()
