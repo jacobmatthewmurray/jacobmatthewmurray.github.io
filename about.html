@@ -1,25 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JMM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+</head>
 
-<div class="post">
-<h1>Test</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet est nunc. Vestibulum commodo magna in nibh luctus, vitae efficitur est commodo. Pellentesque imperdiet lorem nec ante suscipit, eu mollis mauris posuere. Proin tristique mauris et gravida luctus. Nullam vel magna a libero facilisis dapibus. Vestibulum volutpat lectus diam, vehicula fringilla nibh consequat ut. Integer ac dui eget nunc aliquet accumsan quis vel mauris. Nam a convallis ante. Vestibulum consectetur tellus in varius bibendum. Maecenas at mauris tempus, semper nunc vitae, luctus sem. Pellentesque accumsan odio at magna fermentum malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In dictum elit elit, eu cursus mi pretium at. Nam vehicula, turpis sed pulvinar laoreet, tortor mi vehicula ex, vel lobortis felis ex at metus.
+<body>
 
-Aliquam eu finibus sem, imperdiet dapibus velit. Suspendisse potenti. Donec non ultricies diam. Pellentesque tempus massa et urna scelerisque imperdiet. Fusce euismod vel magna egestas porttitor. Cras nisi orci, cursus eget velit nec, venenatis ullamcorper lorem. Vivamus tempus ipsum sollicitudin urna tincidunt, et gravida nulla bibendum. Praesent ac turpis ex. Aliquam ac pellentesque lacus. Integer lorem nulla, dapibus id lobortis ut, finibus in ex. Suspendisse suscipit porttitor tortor, eget laoreet dolor. Nunc feugiat erat malesuada convallis fermentum. Pellentesque malesuada dolor sapien, sed dictum justo pulvinar in.
-
-Duis venenatis pretium libero in luctus. Donec at hendrerit turpis. Vestibulum auctor sem eros. In eu lorem semper, tincidunt urna quis, pulvinar lectus. Aliquam mollis a ex non facilisis. Sed eleifend lectus ac mi pretium semper. Nam nulla sem, convallis a finibus vel, imperdiet pretium ipsum. Ut semper sem nisl, quis molestie tellus feugiat eleifend. Ut et sem tincidunt est volutpat tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Donec a elit enim. Nullam lacinia dapibus eros sed posuere. Vivamus nec tortor eu dui placerat iaculis. Aliquam elementum purus in elementum efficitur. Nam vel quam est.
-
-Maecenas ornare lorem ut augue aliquam, a accumsan ex molestie. Maecenas tincidunt mi eget arcu vestibulum, in maximus risus ullamcorper. Curabitur id nisi augue. Vivamus eleifend nec odio ullamcorper maximus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris viverra dignissim lorem ac aliquam. Aenean mattis facilisis metus, euismod vulputate dui rutrum pharetra. Sed id ultrices diam. Proin bibendum eros ut maximus bibendum. Nulla gravida lectus id ligula sollicitudin, et commodo nunc volutpat. Nullam in nisi tellus. Vestibulum cursus bibendum nibh, non efficitur odio fringilla vel. Nam non felis augue.
-
-Donec nec eleifend nisl, suscipit pharetra diam. Morbi eget nunc dolor. Phasellus pellentesque, leo non molestie interdum, diam nulla euismod nulla, in mattis nulla ipsum ut dolor. Sed imperdiet metus eget eros sodales, vitae imperdiet risus ullamcorper. Nulla tempus ultrices est. Curabitur luctus ex id metus feugiat facilisis. Suspendisse leo nibh, fringilla sit amet vulputate ut, hendrerit eget lectus. Mauris porta luctus commodo. In hac habitasse platea dictumst. Sed aliquam libero dolor, vel efficitur lacus imperdiet non. Donec vulputate lobortis urna auctor elementum. Integer lacinia sodales semper. Cras.</p>
+<div class="content">
+    <div class="header">
+        <a id="navopen" onclick="openNav('navslide')">&#9776;</a>
+        <div id="name">Jacob Matthew Murray</div>
+    </div>
+    <div style="width: 70%; align-self: center;">
+        <h1>about</h1>  
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet est nunc. Vestibulum commodo magna in nibh luctus, vitae efficitur est commodo.     Pellentesque imperdiet lorem nec ante suscipit, eu mollis mauris posuere. Proin tristique mauris et gravida luctus. Nullam vel magna a libero facilisis da    pibus. Vestibulum volutpat lectus diam, vehicula fringilla nibh consequat ut. Integer ac dui eget nunc aliquet accumsan quis vel mauris. Nam a convallis a    nte. Vestibulum consectetur tellus in varius bibendum. Maecenas at mauris tempus, semper nunc vitae, luctus sem. Pellentesque accumsan odio at magna ferme    ntum malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In dictum elit elit, eu cursus mi pretium at.     Nam vehicula, turpis sed pulvinar laoreet, tortor mi vehicula ex, vel lobortis felis ex at metus. </p>
+    </div>
 </div>
-<div class="post">
-<h1>Test</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet est nunc. Vestibulum commodo magna in nibh luctus, vitae efficitur est commodo. Pellentesque imperdiet lorem nec ante suscipit, eu mollis mauris posuere. Proin tristique mauris et gravida luctus. Nullam vel magna a libero facilisis dapibus. Vestibulum volutpat lectus diam, vehicula fringilla nibh consequat ut. Integer ac dui eget nunc aliquet accumsan quis vel mauris. Nam a convallis ante. Vestibulum consectetur tellus in varius bibendum. Maecenas at mauris tempus, semper nunc vitae, luctus sem. Pellentesque accumsan odio at magna fermentum malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In dictum elit elit, eu cursus mi pretium at. Nam vehicula, turpis sed pulvinar laoreet, tortor mi vehicula ex, vel lobortis felis ex at metus.
 
-Aliquam eu finibus sem, imperdiet dapibus velit. Suspendisse potenti. Donec non ultricies diam. Pellentesque tempus massa et urna scelerisque imperdiet. Fusce euismod vel magna egestas porttitor. Cras nisi orci, cursus eget velit nec, venenatis ullamcorper lorem. Vivamus tempus ipsum sollicitudin urna tincidunt, et gravida nulla bibendum. Praesent ac turpis ex. Aliquam ac pellentesque lacus. Integer lorem nulla, dapibus id lobortis ut, finibus in ex. Suspendisse suscipit porttitor tortor, eget laoreet dolor. Nunc feugiat erat malesuada convallis fermentum. Pellentesque malesuada dolor sapien, sed dictum justo pulvinar in.
-
-Duis venenatis pretium libero in luctus. Donec at hendrerit turpis. Vestibulum auctor sem eros. In eu lorem semper, tincidunt urna quis, pulvinar lectus. Aliquam mollis a ex non facilisis. Sed eleifend lectus ac mi pretium semper. Nam nulla sem, convallis a finibus vel, imperdiet pretium ipsum. Ut semper sem nisl, quis molestie tellus feugiat eleifend. Ut et sem tincidunt est volutpat tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Donec a elit enim. Nullam lacinia dapibus eros sed posuere. Vivamus nec tortor eu dui placerat iaculis. Aliquam elementum purus in elementum efficitur. Nam vel quam est.
-
-Maecenas ornare lorem ut augue aliquam, a accumsan ex molestie. Maecenas tincidunt mi eget arcu vestibulum, in maximus risus ullamcorper. Curabitur id nisi augue. Vivamus eleifend nec odio ullamcorper maximus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris viverra dignissim lorem ac aliquam. Aenean mattis facilisis metus, euismod vulputate dui rutrum pharetra. Sed id ultrices diam. Proin bibendum eros ut maximus bibendum. Nulla gravida lectus id ligula sollicitudin, et commodo nunc volutpat. Nullam in nisi tellus. Vestibulum cursus bibendum nibh, non efficitur odio fringilla vel. Nam non felis augue.
-
-Donec nec eleifend nisl, suscipit pharetra diam. Morbi eget nunc dolor. Phasellus pellentesque, leo non molestie interdum, diam nulla euismod nulla, in mattis nulla ipsum ut dolor. Sed imperdiet metus eget eros sodales, vitae imperdiet risus ullamcorper. Nulla tempus ultrices est. Curabitur luctus ex id metus feugiat facilisis. Suspendisse leo nibh, fringilla sit amet vulputate ut, hendrerit eget lectus. Mauris porta luctus commodo. In hac habitasse platea dictumst. Sed aliquam libero dolor, vel efficitur lacus imperdiet non. Donec vulputate lobortis urna auctor elementum. Integer lacinia sodales semper. Cras.</p>
+<div id="navslide">
+    <div id="navslidecontent">
+        <a id="navclose" onclick="closeNav('navslide', 'contentslide')">&times;</a>
+        <div class="rotate">
+            <a href="index.html" style="margin-top: 0px;">home</a>
+            <a href="about.html" style="margin-top: 50px;">about</a>
+            <a href="books.html" style="margin-top: 50px;">books</a>
+        </div>
+    </div>
 </div>
+
+<div id="contentslide">
+    <div class="content">
+        <div class="header"><a href="" id="csclose" onclick="close_content()">&#8676;</a></div>
+        <div id="csc">
+        </div>
+    </div>
+</div>
+
+<script>
+
+var c = 15;
+var h = window.innerHeight;
+var w = window.innerWidth;
+var m = 10;
+var a = 0.66;
+
+var cols = Math.floor((w - 2 * m)/c);
+var rows = Math.floor(a * h /c);
+
+var alive = false; 
+var palive = 0.3;
+var genspeed = 200;
+var mainSlideOutOpen = false; 
+
+var neighborhood = {
+    standard : [[-1,-1],[-1,0],[-1,+1],
+                [+1,-1],[+1,0],[+1,+1],
+                [0,-1],[0,+1]] 
+};
+
+
+var aG = [[1,1,1,1], [1,0,0,0], [1,0,1,1], [1,0,0,1], [1,1,1,1]]
+var aO = [[1,1,1,1], [1,0,0,1], [1,0,0,1], [1,0,0,1], [1,1,1,1]]
+var aD = [[1,1,1,0], [1,0,0,1], [1,0,0,1], [1,0,0,1], [1,1,1,0]]
+var aN = [[1,0,0,1], [1,1,0,1], [1,1,1,1], [1,0,1,1], [1,0,0,1]]
+var aI = [[1], [1], [1], [1], [1]]
+var aH = [[1,0,0,1], [1,0,0,1], [1,1,1,1], [1,0,0,1], [1,0,0,1]]
+var aT = [[1,1,1], [0,1,0], [0,1,0], [0,1,0], [0,1,0]]
+
+var leaf = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0],
+            [0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0],
+            [0,0,0,0,1,1,0,0,0,1,0,0,0,1,1,0,0,0,0],
+            [0,0,0,0,0,1,1,0,1,1,1,0,1,1,0,0,0,0,0],
+            [0,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,0],
+            [0,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,0],
+            [0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0],
+            [0,0,0,1,1,1,0,0,0,1,0,0,0,1,1,1,0,0,0],
+            [0,0,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,0,0],
+            [0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
+            [0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
+
+var field = makeMultiDimArray(rows, cols, 0);
+var value = makeMultiDimArray(rows, cols, 0);
+var border = makeMultiDimArray(rows, cols, [0,0]);
+
+function mod(n, m) {
+        return ((n % m) + m) % m;
+}
+
+
+function makeMultiDimArray(inRows, inCols, inIntlVal) {
+    a = new Array(inRows);
+    for (var r=0; r < inRows; r++){
+        a[r] = new Array(inCols);
+        for (var c=0; c < inCols; c++){
+            a[r][c] = inIntlVal; 
+        }
+    }
+    return(a);
+}
+
+function assessValue() {
+    var nhd = neighborhood.standard; 
+    for (var r=0; r<rows; r++){
+        for (var c=0; c<cols; c++){
+            value[r][c] = 0; 
+            for (var n=0; n<nhd.length; n++){
+                var rowidx = mod(r + nhd[n][0], rows);
+                var colidx = mod(c + nhd[n][1], cols);
+                value[r][c] += field[rowidx][colidx]; 
+            } 
+        }
+    }
+}
+
+
+
+function randomPopulation() {
+
+    var tbl = document.getElementById("catbl");
+
+    for (var r=0; r<rows; r++){
+        for (var c=0; c<cols; c++){
+            if (Math.random() < palive){
+                field[r][c] = 1;
+                tbl.rows[r].cells[c].style = "background-color: black";
+            } else {
+                field[r][c] = 0;
+                tbl.rows[r].cells[c].style = "background-color: white";                    
+            }
+        }
+    }
+}
+
+function leafPopulation() {
+
+    var tbl = document.getElementById('catbl')
+
+    if (rows<19 || cols < 19) {
+        randomPopulation();
+    } else {
+        clearAll();
+        row_start = Math.floor((rows-19)/2)
+        col_start = Math.floor((cols-19)/2)
+        for (var r=0; r<19; r++){
+            for (var c=0; c<19; c++) {
+                field[r+row_start][c+col_start] = leaf[r][c]
+                if (leaf[r][c] == 1) {
+                    tbl.rows[r+row_start].cells[c+col_start].style = "background-color: black";
+                } else {
+                    tbl.rows[r+row_start].cells[c+col_start].style = "background-color: white";
+                }
+            }
+        }
+    }
+}
+
+
+
+function drawTable(destination, table_id) {
+
+    var dest_div = document.getElementById(destination);
+    var tbl = document.createElement("table");
+    tbl.setAttribute("id", table_id);
+
+
+    for (var r = 0; r < rows; r++) {
+        var row = document.createElement("tr");
+
+         for (var c = 0; c < cols; c++) {
+            var cell = document.createElement("td");              
+            cell.addEventListener("click", function(){ changeBackground(this); });
+
+            row.appendChild(cell);
+        }          
+     tbl.appendChild(row);
+    }
+ dest_div.appendChild(tbl);
+}
+
+    function clearAll (){
+        var tbl = document.getElementById("catbl");
+
+        for (var r=0; r < rows; r++){
+            for (var c=0; c < cols; c++){
+                field[r][c] = 0;
+                value[r][c] = 0;
+                tbl.rows[r].cells[c].style = "background-color: white";
+            }
+        }
+    }
+
+    function changeBackground (id){
+        var row = id.parentNode.rowIndex;
+        var col = id.cellIndex;
+        if (field[row][col] == 0) {
+            field[row][col] = 1;
+            id.style = "background-color: black"; 
+        } else {
+            field[row][col] = 0;
+            id.style = "background-color: white";
+        }
+    }
+
+
+
+    function assessField (){
+        //1. death if fewer than two neighbors
+        //2. two or three neighbors lives
+        //3. death if more then three neighbors 
+        //4. dead cell with exactly three neighbors spawns 
+
+        var tbl = document.getElementById("catbl");
+
+        for (r=0; r<rows; r++){
+            for (c=0; c<cols; c++){
+                if (field[r][c] == 1){
+                    if (value[r][c] < 2 || value[r][c] > 3){
+                        field[r][c] = 0;
+                        tbl.rows[r].cells[c].style = "background-color: white";
+                    }
+                } else {
+                    if (value[r][c] == 3){
+                        field[r][c] = 1;
+                        tbl.rows[r].cells[c].style = "background-color: black";
+                    }
+                } 
+            }
+        }
+    }
+
+    function updateLife(){
+        if (alive == false){
+            alive = true;
+            document.getElementById("playButton").src = "black_square.png";
+        } else {
+            alive = false;
+            document.getElementById("playButton").src = "black_rightpointing_triangle.png";
+        }
+
+        var interval = setInterval(live, genspeed);
+        function live(){
+            if (alive == false){
+                clearInterval(interval);
+            } else {
+                assessValue();
+                assessField();
+            }
+        }
+    }
+
+    function openNav(nav) {
+        document.getElementById(nav).style.width = "70px";
+    }
+
+    function closeNav(nav, content) {
+        if (mainSlideOutOpen == true){
+            document.getElementById(content).style.width = "0";
+            setTimeout(function (){
+                document.getElementById(nav).style.width = "0";
+            }, 500);
+        } else {
+            document.getElementById(nav).style.width = "0";
+        }; 
+    }
+
+    function close_content() {
+        mainSlideOutOpen = false; 
+        document.getElementById("contentslide").style.width = "0";
+    }
+
+    function load_content(myid) {
+        document.getElementById("contentslide").style.width = String(w - 70) + 'px';
+        mainSlideOutOpen = true;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', String(myid) + '.html', true);
+        xhr.onreadystatechange = function() {
+            console.log(this.responseText);
+            document.getElementById("csc").innerHTML = this.responseText;
+        };
+        xhr.send()
+    }
+
+
+    function pageLoader() {
+        drawTable("ca", "catbl");
+        randomPopulation();
+    }
+
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+
+if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    window.onresize = function () {delay(location.reload(), 100);}
+} else {
+    console.log('mobile')
+    window.onorientationchange = function () {delay(location.reload(), 100);}
+};
+
+
+
+window.onload=pageLoader;
+</script>
+</body>
+</html>
